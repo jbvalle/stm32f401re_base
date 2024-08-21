@@ -1,10 +1,7 @@
 #include <stdint.h>
 
 extern uint32_t _end_stack_memory;
-
-
 extern uint32_t _start_data_section_init;
-
 extern uint32_t _start_data_section_rt;
 extern uint32_t _end_data_section_rt;
 extern uint32_t _start_bss_section;
@@ -13,7 +10,6 @@ extern uint32_t _end_bss_section;
 extern int main(void);
 
 void reset_handler (void);
-;
 void NMI_handler            (void)__attribute__((weak, alias("Default_handler")));
 void HardFault_handler      (void)__attribute__((weak, alias("Default_handler")));
 void MemManage_handler      (void)__attribute__((weak, alias("Default_handler")));
@@ -80,13 +76,21 @@ void I2C3_ER_handler                      (void)__attribute__((weak, alias("Defa
 void FPU_handler                          (void)__attribute__((weak, alias("Default_handler")));
 void SPI4_handler                         (void)__attribute__((weak, alias("Default_handler")));
 
-
-
-
 __attribute__ ((section(".isr_vector")))
 void (* const vector_table[])(void) = {
     (void (*)(void))(&_end_stack_memory),
-    reset_handler
+    reset_handler,
+    NMI_handler,
+    HardFault_handler,
+    MemManage_handler,
+    BusFault_handler,
+    UsuageFault_handler,
+    0,
+    SVCall_handler,
+    DebugMonitor_handler,
+    0,
+    PendSV_handler,
+    Systick_handler
 };
 
 void reset_handler(void){
