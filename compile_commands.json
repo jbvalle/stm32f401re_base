@@ -1,0 +1,78 @@
+[
+  {
+    "arguments": [
+      "/opt/arm-gnu-toolchain-13.2.Rel1-x86_64-arm-none-eabi/bin/arm-none-eabi-gcc",
+      "-g",
+      "-Wall",
+      "-mcpu=cortex-m4",
+      "-mthumb",
+      "-mfloat-abi=soft",
+      "-Iinc",
+      "-ffreestanding",
+      "-c",
+      "-o",
+      "gen/gpio.o",
+      "src/gpio.c"
+    ],
+    "directory": "/home/kyrax/personal/coding/070_kyrax_rtos/001_driver_implementations/kyrax_drivers/000_basic",
+    "file": "/home/kyrax/personal/coding/070_kyrax_rtos/001_driver_implementations/kyrax_drivers/000_basic/src/gpio.c",
+    "output": "/home/kyrax/personal/coding/070_kyrax_rtos/001_driver_implementations/kyrax_drivers/000_basic/gen/gpio.o"
+  },
+  {
+    "arguments": [
+      "/opt/arm-gnu-toolchain-13.2.Rel1-x86_64-arm-none-eabi/bin/arm-none-eabi-gcc",
+      "-g",
+      "-Wall",
+      "-mcpu=cortex-m4",
+      "-mthumb",
+      "-mfloat-abi=soft",
+      "-Iinc",
+      "-ffreestanding",
+      "-c",
+      "-o",
+      "gen/main.o",
+      "src/main.c"
+    ],
+    "directory": "/home/kyrax/personal/coding/070_kyrax_rtos/001_driver_implementations/kyrax_drivers/000_basic",
+    "file": "/home/kyrax/personal/coding/070_kyrax_rtos/001_driver_implementations/kyrax_drivers/000_basic/src/main.c",
+    "output": "/home/kyrax/personal/coding/070_kyrax_rtos/001_driver_implementations/kyrax_drivers/000_basic/gen/main.o"
+  },
+  {
+    "arguments": [
+      "/opt/arm-gnu-toolchain-13.2.Rel1-x86_64-arm-none-eabi/bin/arm-none-eabi-gcc",
+      "-g",
+      "-Wall",
+      "-mcpu=cortex-m4",
+      "-mthumb",
+      "-mfloat-abi=soft",
+      "-Iinc",
+      "-ffreestanding",
+      "-c",
+      "-o",
+      "gen/rcc.o",
+      "src/rcc.c"
+    ],
+    "directory": "/home/kyrax/personal/coding/070_kyrax_rtos/001_driver_implementations/kyrax_drivers/000_basic",
+    "file": "/home/kyrax/personal/coding/070_kyrax_rtos/001_driver_implementations/kyrax_drivers/000_basic/src/rcc.c",
+    "output": "/home/kyrax/personal/coding/070_kyrax_rtos/001_driver_implementations/kyrax_drivers/000_basic/gen/rcc.o"
+  },
+  {
+    "arguments": [
+      "/opt/arm-gnu-toolchain-13.2.Rel1-x86_64-arm-none-eabi/bin/arm-none-eabi-gcc",
+      "-g",
+      "-Wall",
+      "-mcpu=cortex-m4",
+      "-mthumb",
+      "-mfloat-abi=soft",
+      "-Iinc",
+      "-ffreestanding",
+      "-c",
+      "-o",
+      "gen/startup.o",
+      "src/startup.c"
+    ],
+    "directory": "/home/kyrax/personal/coding/070_kyrax_rtos/001_driver_implementations/kyrax_drivers/000_basic",
+    "file": "/home/kyrax/personal/coding/070_kyrax_rtos/001_driver_implementations/kyrax_drivers/000_basic/src/startup.c",
+    "output": "/home/kyrax/personal/coding/070_kyrax_rtos/001_driver_implementations/kyrax_drivers/000_basic/gen/startup.o"
+  }
+]

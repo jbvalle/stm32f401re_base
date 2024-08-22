@@ -1,4 +1,5 @@
 #include <stdint.h>
+#include "gpio.h"
 
 
 void wait_ms(int time){
@@ -11,6 +12,7 @@ void wait_ms(int time){
 
 int main(void){
 
+    while(1){
 
-    for(;;){}
+    }
 }
