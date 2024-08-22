@@ -17,6 +17,6 @@ typedef struct{
 #define RCC_BASE_ADDR 0x40023800
 
 //Define pointer to RCC struct
-#define RCC ((RCC_TypeDef))
+#define RCC ((RCC_TypeDef*) RCC_BASE_ADDR)
 
 #endif 
