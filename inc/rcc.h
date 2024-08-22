@@ -3,6 +3,9 @@
 #include <stdint.h>
 
 
+/**
+ * @brief RCC Typedef struct that holds the rcc fields
+ */
 typedef struct{
     volatile uint32_t RCC_CR;
     volatile uint32_t RCC_PLLCFGR;

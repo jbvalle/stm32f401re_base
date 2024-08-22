@@ -2,7 +2,13 @@
 #define GPIO_H
 #include <stdint.h>
 
-// Enum for GPIO pin modes
+/**
+ *  @brief Set the GPIO MODE for a given Pin
+ * `GPIO_MODE_INPUT  = 0x0`
+ * `GPIO_MODE_OUTPUT = 0x1`
+ * `GPIO_MODE_ALT    = 0x2`
+ * `GPIO_MODE_ANALOG = 0x3`
+ */
 typedef enum {
     GPIO_MODE_INPUT  = 0x0,
     GPIO_MODE_OUTPUT = 0x1,
@@ -10,19 +16,32 @@ typedef enum {
     GPIO_MODE_ANALOG = 0x3
 } GPIO_Mode;
 
-// Enum for GPIO output types
+/**
+ * @brief Sets GPIO Output type
+ * `GPIO_OTYPE_PP = 0x0`  // Push-pull
+ * `GPIO_OTYPE_OD = 0x1`  // Open-drain
+ */
 typedef enum {
     GPIO_OTYPE_PP = 0x0,  // Push-pull
     GPIO_OTYPE_OD = 0x1   // Open-drain
 } GPIO_OutputType;
 
-// Enum for GPIO pull-up/pull-down
+/**
+ * @brief Sets GPIO Pullup Type
+ * `GPIO_NOPULL = 0x0, `
+ * `GPIO_PULLUP = 0x1, `
+ * `GPIO_PULLDOWN = 0x2`
+ */
 typedef enum {
     GPIO_NOPULL = 0x0,
     GPIO_PULLUP = 0x1,
     GPIO_PULLDOWN = 0x2
 } GPIO_Pull;
 
+/**
+ * @brief Portpin PAx, PBx, PCx, PDx, PEx, ...
+ * `P<PORT><PIN>`
+ */
 typedef enum {
     PA0  = 0x00, // Port A, Pin 0
     PA1  = 0x01, // Port A, Pin 1
@@ -111,6 +130,9 @@ typedef enum {
     // Continue with other ports if needed
 } GPIO_PortPin;
 
+/**
+ * @brief GPIO Peripheral Type with register fields
+ */
 typedef struct{
    volatile uint32_t GPIOx_MODER; 
    volatile uint32_t GPIOx_OTYPER; 
@@ -130,12 +152,23 @@ typedef struct{
 #define GPIO_D ((GPIO_TypeDef *) 0x40020C00)
 #define GPIO_E ((GPIO_TypeDef *) 0x40021000)
 
+/**
+ * Struct pointing to a GPIO TypeDef type
+ */
 typedef struct{
     GPIO_TypeDef *port;    
 }GPIO_PortInfo;
 
 #define GPIO_PORT_COUNT 5
 
+/**
+ * Array of GPIO_TypeDef Pointers
+ *  `GPIO_A`
+ *  `GPIO_B`
+ *  `GPIO_C`
+ *  `GPIO_D`
+ *  `GPIO_E`
+ */
 static GPIO_PortInfo gpio_ports[GPIO_PORT_COUNT] = {
     {GPIO_A},
     {GPIO_B},
@@ -153,3 +186,4 @@ void GPIO_WritePin(GPIO_PortPin portPin, uint8_t value);
 uint8_t GPIO_ReadPin(GPIO_PortPin portPin);
 
 #endif
+
