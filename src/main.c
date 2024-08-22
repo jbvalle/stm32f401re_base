@@ -4,7 +4,8 @@
 
 void GPIO_init(void){
 
-    RCC->RCC_AHB1ENR |= (1 << 1);
+    //Enable GPIOB
+    RCC->RCC_AHB1ENR |= 2;
 }
 
 void wait_ms(int time){
