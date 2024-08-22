@@ -1,4 +1,5 @@
 #include "gpio.h"
+#include "rcc.h"
 #include <stdint.h>
 
 // Function prototypes
@@ -6,6 +7,8 @@ void GPIO_SetOutputType(GPIO_PortPin portPin, GPIO_OutputType type);
 void GPIO_SetPull(GPIO_PortPin portPin, GPIO_Pull pull);
 void GPIO_WritePin(GPIO_PortPin portPin, uint8_t value);
 uint8_t GPIO_ReadPin(GPIO_PortPin portPin);
+void GPIO_init(void);
+
 
 
 /**
@@ -30,6 +33,9 @@ void GPIO_SetMode(GPIO_PortPin portPin, GPIO_Mode mode){
 
     uint8_t pinIndex = portPin & 0x0F;
     uint8_t portIndex = (portPin >> 4) & 0x0F;
+
+    // Enable Clock to GPIO<portIndex>
+    RCC->RCC_AHB1ENR |= (1 << portIndex);
 
     if(portIndex < GPIO_PORT_COUNT){
         GPIO_TypeDef *port = gpio_ports[portIndex].port;

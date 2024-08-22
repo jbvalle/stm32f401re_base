@@ -1,12 +1,6 @@
 #include <stdint.h>
-#include "rcc.h"
 #include "gpio.h"
 
-void GPIO_init(void){
-
-    //Enable GPIOB
-    RCC->RCC_AHB1ENR |= 2;
-}
 
 void wait_ms(int time){
     for(int i = 0; i < time; i++){
@@ -17,7 +11,6 @@ void wait_ms(int time){
 
 int main(void){
 
-    GPIO_init();
 
     GPIO_SetMode(PB7, GPIO_MODE_OUTPUT);
 
