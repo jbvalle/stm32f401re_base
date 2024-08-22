@@ -1,0 +1,214 @@
+
+There are no discarded input sections
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+SRAM             0x20000000         0x00018000         xrw
+FLASH            0x08000000         0x00080000         rw
+*default*        0x00000000         0xffffffff
+
+Linker script and memory map
+
+LOAD gen/gpio.o
+LOAD gen/main.o
+LOAD gen/rcc.o
+LOAD gen/startup.o
+                0x20018000                        _end_stack_memory = (ORIGIN (SRAM) + LENGTH (SRAM))
+
+.isr_vector     0x08000000       0x34
+                0x08000000                        . = ALIGN (0x4)
+ *(.isr_vector)
+ .isr_vector    0x08000000       0x34 gen/startup.o
+                0x08000000                vector_table
+
+.text           0x08000034      0x52c
+                0x08000034                        . = ALIGN (0x4)
+ *(.text)
+ .text          0x08000034      0x494 gen/gpio.o
+                0x08000034                GPIO_SetMode
+                0x080002b8                GPIO_WritePin
+ .text          0x080004c8        0x8 gen/main.o
+                0x080004c8                main
+ .text          0x080004d0       0x22 gen/rcc.o
+                0x080004d0                RCC_init
+                0x080004dc                RCC_EnableClock
+ *fill*         0x080004f2        0x2 
+ .text          0x080004f4       0x6c gen/startup.o
+                0x080004f4                reset_handler
+                0x08000558                UART2_handler
+                0x08000558                EXTI15_10_handler
+                0x08000558                DMA1_Stream7_handler
+                0x08000558                UART1_handler
+                0x08000558                TIM1_UP_TIM10_handler
+                0x08000558                EXTI0_handler
+                0x08000558                DMA1_Stream1_handler
+                0x08000558                SDIO_handler
+                0x08000558                NMI_handler
+                0x08000558                DMA2_Stream3_handler
+                0x08000558                TIM2_handler
+                0x08000558                SPI3_handler
+                0x08000558                TIM3_handler
+                0x08000558                WWDG_handler
+                0x08000558                UART6_handler
+                0x08000558                SPI2_handler
+                0x08000558                UsuageFault_handler
+                0x08000558                SVCall_handler
+                0x08000558                DMA2_Stream6_handler
+                0x08000558                DebugMonitor_handler
+                0x08000558                I2C3_ER_handler
+                0x08000558                DMA1_Stream3_handler
+                0x08000558                MemManage_handler
+                0x08000558                SPI4_handler
+                0x08000558                HardFault_handler
+                0x08000558                DMA1_Stream5_handler
+                0x08000558                FPU_handler
+                0x08000558                DMA2_Stream5_handler
+                0x08000558                EXITI21_TAMP_STAMP_handler
+                0x08000558                EXTI18_OTG_FS_WKUP_handler
+                0x08000558                RCC_handler
+                0x08000558                Systick_handler
+                0x08000558                EXTI2_handler
+                0x08000558                DMA2_Stream1_handler
+                0x08000558                I2C1_ER_handler
+                0x08000558                EXTI9_5__handler
+                0x08000558                EXTI17_RTC_Alarm_handler
+                0x08000558                I2C2_EV_handler
+                0x08000558                EXITI22_RTC_WKUP_handler
+                0x08000558                EXTI3_handler
+                0x08000558                DMA2_Stream0_handler
+                0x08000558                FLASH_handler
+                0x08000558                OTG_FS_handler
+                0x08000558                DMA1_Stream4_handler
+                0x08000558                I2C2_ER_handler
+                0x08000558                TIM1_BRK_TIM9_handler
+                0x08000558                TIM4_handler
+                0x08000558                DMA1_Stream2_handler
+                0x08000558                EXTI4_handler
+                0x08000558                DMA1_Stream6_handler
+                0x08000558                ADC_handler
+                0x08000558                I2C1_EV_handler
+                0x08000558                SPI1_handler
+                0x08000558                DMA2_Stream4_handler
+                0x08000558                PendSV_handler
+                0x08000558                DMA2_Stream7_handler
+                0x08000558                DMA1_Stream0_handler
+                0x08000558                DMA2_Stream2_handler
+                0x08000558                EXTI1_handler
+                0x08000558                TIM1_TRG_COM_TIM11_handler
+                0x08000558                TIM5_handler
+                0x08000558                EXITI16_PVD__handler
+                0x08000558                I2C3_EV_handler
+                0x08000558                BusFault_handler
+                0x08000558                TIM1_CC_handler
+                0x08000558                Default_handler
+ *(.text.*)
+ *(.rodata)
+ *(.rodata.*)
+                0x08000560                        _start_data_section_init = LOADADDR (.data)
+
+.glue_7         0x08000560        0x0
+ .glue_7        0x08000560        0x0 linker stubs
+
+.glue_7t        0x08000560        0x0
+ .glue_7t       0x08000560        0x0 linker stubs
+
+.vfp11_veneer   0x08000560        0x0
+ .vfp11_veneer  0x08000560        0x0 linker stubs
+
+.v4_bx          0x08000560        0x0
+ .v4_bx         0x08000560        0x0 linker stubs
+
+.iplt           0x08000560        0x0
+ .iplt          0x08000560        0x0 gen/gpio.o
+
+.rel.dyn        0x08000560        0x0
+ .rel.iplt      0x08000560        0x0 gen/gpio.o
+
+.data           0x20000000        0x0 load address 0x08000560
+                0x20000000                        . = ALIGN (0x4)
+                0x20000000                        _start_data_section_rt = .
+ *(.data)
+ .data          0x20000000        0x0 gen/gpio.o
+ .data          0x20000000        0x0 gen/main.o
+ .data          0x20000000        0x0 gen/rcc.o
+ .data          0x20000000        0x0 gen/startup.o
+ *(.data.*)
+                0x20000000                        . = ALIGN (0x4)
+                0x20000000                        _end_data_section_rt = .
+
+.igot.plt       0x20000000        0x0 load address 0x08000560
+ .igot.plt      0x20000000        0x0 gen/gpio.o
+
+.bss            0x20000000        0x0 load address 0x08000560
+                0x20000000                        . = ALIGN (0x4)
+                0x20000000                        _start_bss_section = .
+ *(.bss)
+ .bss           0x20000000        0x0 gen/gpio.o
+ .bss           0x20000000        0x0 gen/main.o
+ .bss           0x20000000        0x0 gen/rcc.o
+ .bss           0x20000000        0x0 gen/startup.o
+ *(.bss.*)
+                0x20000000                        . = ALIGN (0x4)
+                0x20000000                        _end_bss_section = .
+OUTPUT(gen/debug/main.elf elf32-littlearm)
+LOAD linker stubs
+
+.debug_info     0x00000000      0x68f
+ .debug_info    0x00000000      0x3b0 gen/gpio.o
+ .debug_info    0x000003b0       0x83 gen/main.o
+ .debug_info    0x00000433       0xef gen/rcc.o
+ .debug_info    0x00000522      0x16d gen/startup.o
+
+.debug_abbrev   0x00000000      0x2d3
+ .debug_abbrev  0x00000000       0xe4 gen/gpio.o
+ .debug_abbrev  0x000000e4       0x45 gen/main.o
+ .debug_abbrev  0x00000129       0x9c gen/rcc.o
+ .debug_abbrev  0x000001c5      0x10e gen/startup.o
+
+.debug_aranges  0x00000000       0x80
+ .debug_aranges
+                0x00000000       0x20 gen/gpio.o
+ .debug_aranges
+                0x00000020       0x20 gen/main.o
+ .debug_aranges
+                0x00000040       0x20 gen/rcc.o
+ .debug_aranges
+                0x00000060       0x20 gen/startup.o
+
+.debug_line     0x00000000      0x406
+ .debug_line    0x00000000      0x228 gen/gpio.o
+ .debug_line    0x00000228       0x3d gen/main.o
+ .debug_line    0x00000265       0xba gen/rcc.o
+ .debug_line    0x0000031f       0xe7 gen/startup.o
+
+.debug_str      0x00000000      0x3ee
+ .debug_str     0x00000000      0x3ee gen/gpio.o
+                                0x2ee (size before relaxing)
+ .debug_str     0x000003ee      0x147 gen/main.o
+ .debug_str     0x000003ee      0x194 gen/rcc.o
+ .debug_str     0x000003ee      0x215 gen/startup.o
+
+.comment        0x00000000       0x44
+ .comment       0x00000000       0x44 gen/gpio.o
+                                 0x45 (size before relaxing)
+ .comment       0x00000044       0x45 gen/main.o
+ .comment       0x00000044       0x45 gen/rcc.o
+ .comment       0x00000044       0x45 gen/startup.o
+
+.ARM.attributes
+                0x00000000       0x2e
+ .ARM.attributes
+                0x00000000       0x2e gen/gpio.o
+ .ARM.attributes
+                0x0000002e       0x2e gen/main.o
+ .ARM.attributes
+                0x0000005c       0x2e gen/rcc.o
+ .ARM.attributes
+                0x0000008a       0x2e gen/startup.o
+
+.debug_frame    0x00000000      0x12c
+ .debug_frame   0x00000000       0x60 gen/gpio.o
+ .debug_frame   0x00000060       0x28 gen/main.o
+ .debug_frame   0x00000088       0x58 gen/rcc.o
+ .debug_frame   0x000000e0       0x4c gen/startup.o

@@ -1,12 +1,10 @@
 #include <stdint.h>
-
-volatile uint32_t g_var = 1000;
+#include "rcc.h"
+#include "gpio.h"
 
 int main(void){
 
-    volatile int a = 100;
-    volatile int b = 100;
-    volatile int c = a + b;
+    while(1) {
 
-    for(;;){}
+    }
 }
