@@ -1,12 +1,16 @@
 #include <stdint.h>
 
-volatile uint32_t g_var = 1000;
+
+void wait_ms(int time){
+    for(int i = 0; i < time; i++){
+        for(int j = 0; j < 1600; j++);
+    }
+}
+
+
 
 int main(void){
 
-    volatile int a = 100;
-    volatile int b = 100;
-    volatile int c = a + b;
 
     for(;;){}
 }
