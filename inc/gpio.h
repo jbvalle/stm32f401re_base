@@ -144,7 +144,6 @@ typedef struct{
    volatile uint32_t GPIOx_LCKR; 
    volatile uint32_t GPIOx_AFRL; 
    volatile uint32_t GPIOx_AFRH; 
-   volatile uint32_t res1[4]; 
 }GPIO_TypeDef;
 
 #define GPIO_A ((GPIO_TypeDef *) 0x40020000)
