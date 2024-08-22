@@ -10,6 +10,12 @@ typedef struct{
     volatile uint32_t RCC_CIR;
     volatile uint32_t RCC_AHB1RSTR;
     volatile uint32_t RCC_AHB2RSTR;
+    volatile uint32_t res1[2];
+    volatile uint32_t RCC_APB1RSTR;
+    volatile uint32_t RCC_APB2RSTR;
+    volatile uint32_t res2[2];
+    volatile uint32_t RCC_AHB1ENR;
+    volatile uint32_t RCC_AHB2ENR;
     //Adapt according to hardware
 }RCC_TypeDef;
 
@@ -24,7 +30,7 @@ typedef enum{
 #define RCC_BASE_ADDR 0x40023800
 
 //Define pointer to RCC struct
-#define RCC ((RCC_TypeDef)) RCC_BASE_ADDR
+#define RCC ((RCC_TypeDef *) RCC_BASE_ADDR) 
 
 // Function Prototypes
 void RCC_init(void);
