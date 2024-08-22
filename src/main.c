@@ -1,15 +1,16 @@
 #include <stdint.h>
-#include "gpio.h"
 #include "rcc.h"
+#include "gpio.h"
 
 void GPIO_init(void){
 
-    RCC->RCC_AHB1ENR |= 1;
+    RCC->RCC_AHB1ENR |= (1 << 1);
+}
 
-    GPIO_B->GPIOx_MODER &= ~(3 << (2 * 14));
-    GPIO_B->GPIOx_MODER |=  (1 << (2 * 14));
-
-    GPIO_B->GPIOx_ODR |= (1 << 14);
+void wait_ms(int time){
+    for(int i = 0; i < time; i++){
+        for(int j = 0; j < 1600; j++);
+    }
 }
 
 
@@ -17,10 +18,14 @@ int main(void){
 
     GPIO_init();
 
-    GPIO_SetMode(PB14, GPIO_MODE_OUTPUT);
+    GPIO_SetMode(PB7, GPIO_MODE_OUTPUT);
 
-    GPIO_WritePin(PB14, 1);
+    while(1) {
 
-    while(1){
+        GPIO_WritePin(PB7, 1);
+        wait_ms(100);
+        GPIO_WritePin(PB7, 0);
+        wait_ms(100);
+
     }
 }
