@@ -13,7 +13,13 @@ typedef struct{
     volatile uint32_t RCC_CIR;
     volatile uint32_t RCC_AHB1RSTR;
     volatile uint32_t RCC_AHB2RSTR;
-    //adapt from here    
+    volatile uint32_t res1[2];
+    volatile uint32_t RCC_APB1RSTR;
+    volatile uint32_t RCC_APB2RSTR;
+    volatile uint32_t res2[2];
+    volatile uint32_t RCC_AHB1ENR;
+    volatile uint32_t RCC_AHB2ENR;
+    //Adapt according to hardware
 }RCC_TypeDef;
 
 typedef enum{

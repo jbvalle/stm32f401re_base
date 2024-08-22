@@ -68,7 +68,7 @@ peripheral_integrity_check: FORCE | mktools
 #   cd ./docs && doxygen Doxyfile
 
 clean: FORCE
-	rm -rf $(GEN_DIR) .cache compile_commands.json
+	rm -rf $(GEN_DIR) .cache compile_commands.json .gdb_history
 
 display: FORCE
 	echo $(PIC)
