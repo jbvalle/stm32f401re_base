@@ -37,7 +37,7 @@ SECTIONS
         *(.data.*)
         . = ALIGN(4);
         _end_data_section_rt = .;
-    }> SRAM AT> FLASH
+    }> SRAM1 AT> FLASH
 
     .bss :
     {
@@ -47,5 +47,5 @@ SECTIONS
         *(.bss.*)
         . = ALIGN(4);
         _end_bss_section = .;
-    }> SRAM 
+    }> SRAM1 
 }
