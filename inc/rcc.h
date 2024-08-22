@@ -17,6 +17,18 @@ typedef struct{
     volatile uint32_t RCC_AHB1RSTR;
     volatile uint32_t RCC_AHB2RSTR;
     //adapt from here    
+    volatile uint32_t RCC_AHB3RSTR;
+    volatile uint32_t res1;
+    volatile uint32_t RCC_APB1RSTR;
+    volatile uint32_t RCC_APB2RSTR;
+    volatile uint32_t res2[2];
+    volatile uint32_t RCC_AHB1ENR;
+    volatile uint32_t RCC_AHB2ENR;
+    volatile uint32_t RCC_AHB3ENR;
+    volatile uint32_t res3;
+    volatile uint32_t RCC_APB1ENR;
+    volatile uint32_t RCC_APB2ENR;
+    volatile uint32_t res4[2];
 }RCC_TypeDef;
 
 //Adapt this to your Hardware
