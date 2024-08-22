@@ -1,12 +1,17 @@
 #include <stdint.h>
+#include "gpio.h"
+#include "rcc.h"
 
-volatile uint32_t g_var = 1000;
+void GPIO_init(void){
+
+    RCC->RCC_AHB1ENR |= 1;
+}
 
 int main(void){
 
-    volatile int a = 100;
-    volatile int b = 100;
-    volatile int c = a + b;
+    GPIO_init();
+
+    GPIO_SetMode(PB7, GPIO_MODE_OUTPUT);
 
     for(;;){}
 }
