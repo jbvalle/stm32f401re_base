@@ -1,14 +1,3 @@
-SYSCFG_TypeDef:
- SYSCFG_MEMRMP : 0x0
- SYSCFG_PMC : 0x4
- SYSCFG_EXTICRx[0] : 0x8
- SYSCFG_EXTICRx[1] : 0xc
- SYSCFG_EXTICRx[2] : 0x10
- SYSCFG_EXTICRx[3] : 0x14
- res1[0] : 0x18
- res1[1] : 0x1c
- SYSCFG_CMPCR : 0x20
-
 vector_table:
  (void (*)(void))(&_end_stack_memory) : 0x0
  reset_handler : 0x4
@@ -126,6 +115,78 @@ GPIO_TypeDef:
  GPIOx_AFRH : 0x24
 
 GPIO_PortInfo:
+
+TASK_TypeDef:
+
+NVIC_TypeDef:
+ NVIC_ISER[0] : 0x0
+ NVIC_ISER[1] : 0x4
+ NVIC_ISER[2] : 0x8
+ NVIC_ISER[3] : 0xc
+ NVIC_ISER[4] : 0x10
+ NVIC_ISER[5] : 0x14
+ NVIC_ISER[6] : 0x18
+ NVIC_ISER[7] : 0x1c
+ NVIC_ICER[0] : 0x20
+ NVIC_ICER[1] : 0x24
+ NVIC_ICER[2] : 0x28
+ NVIC_ICER[3] : 0x2c
+ NVIC_ICER[4] : 0x30
+ NVIC_ICER[5] : 0x34
+ NVIC_ICER[6] : 0x38
+ NVIC_ICER[7] : 0x3c
+ NVIC_ISPR[0] : 0x40
+ NVIC_ISPR[1] : 0x44
+ NVIC_ISPR[2] : 0x48
+ NVIC_ISPR[3] : 0x4c
+ NVIC_ISPR[4] : 0x50
+ NVIC_ISPR[5] : 0x54
+ NVIC_ISPR[6] : 0x58
+ NVIC_ISPR[7] : 0x5c
+ NVIC_ICPR[0] : 0x60
+ NVIC_ICPR[1] : 0x64
+ NVIC_ICPR[2] : 0x68
+ NVIC_ICPR[3] : 0x6c
+ NVIC_ICPR[4] : 0x70
+ NVIC_ICPR[5] : 0x74
+ NVIC_ICPR[6] : 0x78
+ NVIC_ICPR[7] : 0x7c
+ NVIC_IABR[0] : 0x80
+ NVIC_IABR[1] : 0x84
+ NVIC_IABR[2] : 0x88
+ NVIC_IABR[3] : 0x8c
+ NVIC_IABR[4] : 0x90
+ NVIC_IABR[5] : 0x94
+ NVIC_IABR[6] : 0x98
+ NVIC_IABR[7] : 0x9c
+ NVIC_IPR[0] : 0xa0
+ NVIC_IPR[1] : 0xa4
+ NVIC_IPR[2] : 0xa8
+ NVIC_IPR[3] : 0xac
+ NVIC_IPR[4] : 0xb0
+ NVIC_IPR[5] : 0xb4
+ NVIC_IPR[6] : 0xb8
+ NVIC_IPR[7] : 0xbc
+ NVIC_STIR : 0xc0
+
+SYSCFG_TypeDef:
+ SYSCFG_MEMRMP : 0x0
+ SYSCFG_PMC : 0x4
+ SYSCFG_EXTICRx[0] : 0x8
+ SYSCFG_EXTICRx[1] : 0xc
+ SYSCFG_EXTICRx[2] : 0x10
+ SYSCFG_EXTICRx[3] : 0x14
+ res1[0] : 0x18
+ res1[1] : 0x1c
+ SYSCFG_CMPCR : 0x20
+
+EXTI_TypeDef:
+ EXTI_IMR : 0x0
+ EXTI_EMR : 0x4
+ EXTI_RTSR : 0x8
+ EXTI_FTSR : 0xc
+ EXTI_SWIER : 0x10
+ EXTI_PR : 0x14
 
 RCC_TypeDef:
  RCC_CR : 0x0
