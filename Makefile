@@ -1,6 +1,6 @@
 # Binaries
 CC = arm-none-eabi-gcc
-PIC_SCRIPT = assert.py
+PIC_SCRIPT = assert_v0_2.py
 
 # Directories
 SRC_DIR = src
@@ -19,7 +19,7 @@ LD := $(wildcard $(LINKER_DIR)/*.ld)
 
 # FLAGS
 MARCH = cortex-m4
-CFLAGS = -g -Wall -mcpu=$(MARCH) -mthumb -mfloat-abi=soft -I$(INC_DIR) -ffreestanding -nostartfiles
+CFLAGS = -g -Wall -mcpu=$(MARCH) -mthumb -mfloat-abi=soft -I$(INC_DIR) -ffreestanding -nostartfiles -O0
 LFLAGS = -nostdlib -T $(LD) -Wl,-Map=$(GEN_DIR)/$(DEB_DIR)/main.map
 
 #PATHS

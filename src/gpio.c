@@ -67,7 +67,7 @@ void GPIO_WritePin(GPIO_PortPin portPin, uint8_t value){
         GPIO_TypeDef *port = gpio_ports[portIndex].port;
 
         (value == 1) ?
-        (port->GPIOx_ODR &= ~(1 << pinIndex)) : (port->GPIOx_ODR |= (1 << pinIndex));
+        (port->GPIOx_ODR |=  (1 << pinIndex)) : (port->GPIOx_ODR &= ~(1 << pinIndex));
     }
     
 }

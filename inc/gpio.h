@@ -9,7 +9,7 @@
  * `GPIO_MODE_ALT    = 0x2`
  * `GPIO_MODE_ANALOG = 0x3`
  */
-typedef enum {
+typedef enum GPIO_Mode{
     GPIO_MODE_INPUT  = 0x0,
     GPIO_MODE_OUTPUT = 0x1,
     GPIO_MODE_ALT    = 0x2,
@@ -21,7 +21,7 @@ typedef enum {
  * `GPIO_OTYPE_PP = 0x0`  // Push-pull
  * `GPIO_OTYPE_OD = 0x1`  // Open-drain
  */
-typedef enum {
+typedef enum GPIO_OutputType{
     GPIO_OTYPE_PP = 0x0,  // Push-pull
     GPIO_OTYPE_OD = 0x1   // Open-drain
 } GPIO_OutputType;
@@ -32,7 +32,7 @@ typedef enum {
  * `GPIO_PULLUP = 0x1, `
  * `GPIO_PULLDOWN = 0x2`
  */
-typedef enum {
+typedef enum GPIO_Pull{
     GPIO_NOPULL = 0x0,
     GPIO_PULLUP = 0x1,
     GPIO_PULLDOWN = 0x2
@@ -42,7 +42,7 @@ typedef enum {
  * @brief Portpin PAx, PBx, PCx, PDx, PEx, ...
  * `P<PORT><PIN>`
  */
-typedef enum {
+typedef enum GPIO_PortPin{
     PA0  = 0x00, // Port A, Pin 0
     PA1  = 0x01, // Port A, Pin 1
     PA2  = 0x02, // Port A, Pin 2
@@ -133,7 +133,7 @@ typedef enum {
 /**
  * @brief GPIO Peripheral Type with register fields
  */
-typedef struct{
+typedef struct GPIO_TypeDef{
    volatile uint32_t GPIOx_MODER; 
    volatile uint32_t GPIOx_OTYPER; 
    volatile uint32_t GPIOx_OSPEEDR; 
@@ -155,7 +155,7 @@ typedef struct{
 /**
  * Struct pointing to a GPIO TypeDef type
  */
-typedef struct{
+typedef struct GPIO_PortInfo{
     GPIO_TypeDef *port;    
 }GPIO_PortInfo;
 

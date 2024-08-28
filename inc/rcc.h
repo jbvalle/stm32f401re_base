@@ -6,7 +6,7 @@
 /**
  * @brief RCC Typedef struct that holds the rcc fields
  */
-typedef struct{
+typedef struct RCC_TypeDef{
     volatile uint32_t RCC_CR;
     volatile uint32_t RCC_PLLCFGR;
     volatile uint32_t RCC_CFGR;
@@ -20,9 +20,12 @@ typedef struct{
     volatile uint32_t RCC_AHB1ENR;
     volatile uint32_t RCC_AHB2ENR;
     //Adapt according to hardware
+    volatile uint32_t res3[2];
+    volatile uint32_t RCC_APB1ENR;
+    volatile uint32_t RCC_APB2ENR;
 }RCC_TypeDef;
 
-typedef enum{
+typedef enum RCC_Bridge{
     AHB1 = 0x0,
     AHB2 = 0x1,
     APB1 = 0x2,
