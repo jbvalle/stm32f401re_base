@@ -41,7 +41,7 @@ $(GEN_DIR)/%.o : $(SRC_DIR)/%.c | mkobj
 	$(CC) $(CFLAGS) -c -o $@ $^
 
 $(CONFIG_OBJ) : $(CONFIG_HEX) | mkobj
-	$(OBJCOPY) -I binary -O elf32-littlearm $^ $@ 
+	$(OBJCOPY)  -I binary -O elf32-littlearm --rename-section .data=.config_data $^ $@ 
 
 $(TARGET) : $(OBJ) $(CONFIG_OBJ) | mkdeb
 	$(CC) $(CFLAGS) $(LFLAGS) -o $@ $^

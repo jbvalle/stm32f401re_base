@@ -6,7 +6,8 @@ MEMORY
 {
     SRAM (rwx) : ORIGIN = 0x20001000, LENGTH = 92K
     CONFIG_DATA (rw) : ORIGIN = 0x20000000, LENGTH = 4K
-    FLASH (rw) : ORIGIN = 0x08000000, LENGTH = 512K
+    FLASH (rw) : ORIGIN = 0x08000000, LENGTH = 196K
+    FLASH_CONFIG_DATA (rw) : ORIGIN = 0x08030000, LENGTH = 65K
 }
 
 SECTIONS
@@ -36,7 +37,7 @@ SECTIONS
         KEEP(*(.config_data.*))
         . = ALIGN(4);
         _end_config_data_section_rt = .;
-    }> CONFIG_DATA AT> FLASH
+    }> CONFIG_DATA AT> FLASH_CONFIG_DATA
 
     _start_data_section_init = LOADADDR(.data);
 
