@@ -12,5 +12,7 @@ typedef struct CONFIG_BLOCK{
     volatile uint32_t param6;
 }CONFIG_BLOCK;
 
-#define config_block ((CONFIG_BLOCK*) 0x20000000)
+#define CONFIG_BLOCK_BASE 0x20000000
+#define PARAM_VAL ((CONFIG_BLOCK*) (CONFIG_BLOCK_BASE + 0x08))
+
 #endif

@@ -33,7 +33,7 @@ OPENOCD_INTERFACE = /usr/share/openocd/scripts/interface/stlink-v2.cfg
 OPENOCD_TARGET = /usr/share/openocd/scripts/target/stm32f4x.cfg
 
 # Targets
-TARGET = $(GEN_DIR)/$(DEB_DIR)/main.elf
+TARGET =  $(GEN_DIR)/$(DEB_DIR)/main.elf
 
 all:  $(OBJ) $(TARGET)
 

@@ -32,13 +32,7 @@ uint32_t g_some_var_stuff = 1000;
 
 int main(void){
 
-    volatile uint32_t param0 = config_block->param0;
-    volatile uint32_t param1 = config_block->param1;
-    volatile uint32_t param2 = config_block->param2;
-    volatile uint32_t param3 = config_block->param3;
-    volatile uint32_t param4 = config_block->param4;
-    volatile uint32_t param5 = config_block->param5;
-    volatile uint32_t param6 = config_block->param6;
+    volatile uint32_t param0 = *((uint32_t*)PARAM_VAL);
 
     GPIO_SetMode(PA5, GPIO_MODE_OUTPUT);
 

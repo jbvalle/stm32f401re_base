@@ -27,7 +27,7 @@ LOAD gen/config_data.o
  .isr_vector    0x08000000      0x194 gen/startup.o
                 0x08000000                vector_table
 
-.text           0x08000194      0x494
+.text           0x08000194      0x468
                 0x08000194                        . = ALIGN (0x4)
  *(.text)
  .text          0x08000194       0xec gen/gpio.o
@@ -104,52 +104,52 @@ LOAD gen/config_data.o
                 0x08000438                TIM1_CC_handler
                 0x08000438                Default_handler
                 0x08000440                EXTI15_10_handler
- .text          0x0800046c       0xfc gen/main.o
+ .text          0x0800046c       0xd0 gen/main.o
                 0x0800046c                wait_ms
                 0x080004a8                toggleLED
                 0x08000510                main
- .text          0x08000568       0x22 gen/rcc.o
-                0x08000568                RCC_init
-                0x08000574                RCC_EnableClock
- *fill*         0x0800058a        0x2 
- .text          0x0800058c       0x9c gen/startup.o
-                0x0800058c                reset_handler
+ .text          0x0800053c       0x22 gen/rcc.o
+                0x0800053c                RCC_init
+                0x08000548                RCC_EnableClock
+ *fill*         0x0800055e        0x2 
+ .text          0x08000560       0x9c gen/startup.o
+                0x08000560                reset_handler
  *(.text.*)
  *(.rodata)
  *(.rodata.*)
                 0x08030000                        _start_config_data_section_init = LOADADDR (.config_data)
 
-.glue_7         0x08000628        0x0
- .glue_7        0x08000628        0x0 linker stubs
+.glue_7         0x080005fc        0x0
+ .glue_7        0x080005fc        0x0 linker stubs
 
-.glue_7t        0x08000628        0x0
- .glue_7t       0x08000628        0x0 linker stubs
+.glue_7t        0x080005fc        0x0
+ .glue_7t       0x080005fc        0x0 linker stubs
 
-.vfp11_veneer   0x08000628        0x0
- .vfp11_veneer  0x08000628        0x0 linker stubs
+.vfp11_veneer   0x080005fc        0x0
+ .vfp11_veneer  0x080005fc        0x0 linker stubs
 
-.v4_bx          0x08000628        0x0
- .v4_bx         0x08000628        0x0 linker stubs
+.v4_bx          0x080005fc        0x0
+ .v4_bx         0x080005fc        0x0 linker stubs
 
-.iplt           0x08000628        0x0
- .iplt          0x08000628        0x0 gen/gpio.o
+.iplt           0x080005fc        0x0
+ .iplt          0x080005fc        0x0 gen/gpio.o
 
-.rel.dyn        0x08000628        0x0
- .rel.iplt      0x08000628        0x0 gen/gpio.o
+.rel.dyn        0x080005fc        0x0
+ .rel.iplt      0x080005fc        0x0 gen/gpio.o
 
-.config_data    0x20000000       0x1c load address 0x08030000
+.config_data    0x20000000        0xc load address 0x08030000
                 0x20000000                        . = ALIGN (0x4)
                 0x20000000                        _start_config_data_section_rt = .
  *(.config_data)
- .config_data   0x20000000       0x1c gen/config_data.o
+ .config_data   0x20000000        0xc gen/config_data.o
                 0x20000000                _binary_gen_config_config_data_hex_start
-                0x2000001c                _binary_gen_config_config_data_hex_end
+                0x2000000c                _binary_gen_config_config_data_hex_end
  *(.config_data.*)
-                0x2000001c                        . = ALIGN (0x4)
-                0x2000001c                        _end_config_data_section_rt = .
-                0x08000628                        _start_data_section_init = LOADADDR (.data)
+                0x2000000c                        . = ALIGN (0x4)
+                0x2000000c                        _end_config_data_section_rt = .
+                0x080005fc                        _start_data_section_init = LOADADDR (.data)
 
-.data           0x20001000       0x54 load address 0x08000628
+.data           0x20001000       0x54 load address 0x080005fc
                 0x20001000                        . = ALIGN (0x4)
                 0x20001000                        _start_data_section_rt = .
  *(.data)
@@ -164,10 +164,10 @@ LOAD gen/config_data.o
                 0x20001054                        . = ALIGN (0x4)
                 0x20001054                        _end_data_section_rt = .
 
-.igot.plt       0x20001054        0x0 load address 0x0800067c
+.igot.plt       0x20001054        0x0 load address 0x08000650
  .igot.plt      0x20001054        0x0 gen/gpio.o
 
-.bss            0x20001054        0x8 load address 0x0800067c
+.bss            0x20001054        0x8 load address 0x08000650
                 0x20001054                        . = ALIGN (0x4)
                 0x20001054                        _start_bss_section = .
  *(.bss)
@@ -184,13 +184,13 @@ LOAD gen/config_data.o
 OUTPUT(gen/debug/main.elf elf32-littlearm)
 LOAD linker stubs
 
-.debug_info     0x00000000     0x19df
+.debug_info     0x00000000     0x1985
  .debug_info    0x00000000      0x55e gen/gpio.o
  .debug_info    0x0000055e      0x852 gen/interrupt.o
  .debug_info    0x00000db0      0x236 gen/isr.o
- .debug_info    0x00000fe6      0x5ce gen/main.o
- .debug_info    0x000015b4       0xf3 gen/rcc.o
- .debug_info    0x000016a7      0x338 gen/startup.o
+ .debug_info    0x00000fe6      0x574 gen/main.o
+ .debug_info    0x0000155a       0xf3 gen/rcc.o
+ .debug_info    0x0000164d      0x338 gen/startup.o
 
 .debug_abbrev   0x00000000      0x68d
  .debug_abbrev  0x00000000      0x110 gen/gpio.o
@@ -219,13 +219,13 @@ LOAD linker stubs
  .debug_rnglists
                 0x00000000       0x17 gen/gpio.o
 
-.debug_line     0x00000000      0x70a
+.debug_line     0x00000000      0x6e6
  .debug_line    0x00000000      0x144 gen/gpio.o
  .debug_line    0x00000144      0x1c7 gen/interrupt.o
  .debug_line    0x0000030b       0xdf gen/isr.o
- .debug_line    0x000003ea      0x146 gen/main.o
- .debug_line    0x00000530       0xba gen/rcc.o
- .debug_line    0x000005ea      0x120 gen/startup.o
+ .debug_line    0x000003ea      0x122 gen/main.o
+ .debug_line    0x0000050c       0xba gen/rcc.o
+ .debug_line    0x000005c6      0x120 gen/startup.o
 
 .debug_str      0x00000000     0x10a4
  .debug_str     0x00000000     0x10a4 gen/gpio.o
