@@ -108,6 +108,16 @@ void (* const vector_table[])(void) = {
 };
 
 void reset_handler(void){
+    // Copy config data from flash to SRAM
+    //uint32_t *config_data_src_addr = (uint32_t *)&_start_config_data_section_init;
+    //uint32_t *config_data_dst_addr = (uint32_t *)&_start_config_data_section_rt;
+
+    //for(uint32_t *ptr = (uint32_t*)config_data_dst_addr; ptr < &_end_config_data_section_rt;){
+
+    //    *ptr++ = *config_data_src_addr++;
+    //}
+
+    // Copy data value to stack memory
     uint32_t *data_src_addr = (uint32_t *)&_start_data_section_init;
     uint32_t *data_dst_addr = (uint32_t *)&_start_data_section_rt;
 

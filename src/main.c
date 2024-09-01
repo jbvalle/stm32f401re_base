@@ -1,6 +1,7 @@
 #include <stdint.h>
 #include "gpio.h"
 #include "interrupt.h"
+#include "config_data.h"
 
 
 TASK_TypeDef tasks;
@@ -27,9 +28,11 @@ void toggleLED(void){
     wait_ms(300);
 }
 
+uint32_t g_some_var_stuff = 1000;
 
 int main(void){
 
+    volatile uint32_t param0 = config_block->param0;
 
     GPIO_SetMode(PA5, GPIO_MODE_OUTPUT);
 

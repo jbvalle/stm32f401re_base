@@ -1,5 +1,7 @@
 # Binaries
 CC = arm-none-eabi-gcc
+OBJCOPY = arm-none-eabi-objcopy 
+
 PIC_SCRIPT = assert_v0_2.py
 
 # Directories
@@ -11,11 +13,15 @@ DEB_DIR = debug
 TOOLS_DIR = tools
 PIC_DIR = peripheral_integrity_check
 LOG_DIR = log
+CONFIG_DIR = config
 
 # Files 
 SRC := $(wildcard $(SRC_DIR)/*.c)
 OBJ := $(patsubst $(SRC_DIR)/%.c, $(GEN_DIR)/%.o, $(SRC))
 LD := $(wildcard $(LINKER_DIR)/*.ld)
+
+CONFIG_HEX = $(GEN_DIR)/$(CONFIG_DIR)/config_data.hex
+CONFIG_OBJ = $(GEN_DIR)/config_data.o
 
 # FLAGS
 MARCH = cortex-m4
@@ -29,18 +35,23 @@ OPENOCD_TARGET = /usr/share/openocd/scripts/target/stm32f4x.cfg
 # Targets
 TARGET = $(GEN_DIR)/$(DEB_DIR)/main.elf
 
-all: $(OBJ) $(TARGET)
+all:  $(OBJ) $(TARGET)
 
 $(GEN_DIR)/%.o : $(SRC_DIR)/%.c | mkobj
 	$(CC) $(CFLAGS) -c -o $@ $^
 
-$(TARGET) : $(OBJ) | mkdeb
+$(CONFIG_OBJ) : $(CONFIG_HEX) | mkobj
+	$(OBJCOPY) -I binary -O elf32-littlearm $^ $@ 
+
+$(TARGET) : $(OBJ) $(CONFIG_OBJ) | mkdeb
 	$(CC) $(CFLAGS) $(LFLAGS) -o $@ $^
+
 
 $(TOOLS_DIR)/$(PIC_DIR)/%.txt : 
 
 mkobj:
 	mkdir -p $(GEN_DIR)
+	mkdir -p $(GEN_DIR)/$(CONFIG_DIR)
 
 mkdeb:
 	mkdir -p $(GEN_DIR)/$(DEB_DIR)
@@ -56,6 +67,11 @@ peripheral_integrity_check: FORCE | mktools
 	mkdir -p $(GEN_DIR)/$(LOG_DIR)
 	python3 $(TOOLS_DIR)/$(PIC_DIR)/$(PIC_SCRIPT) $(SRC_DIR)/*.c $(INC_DIR)/*.h -o $(GEN_DIR)/$(LOG_DIR)/peripheral_integrity_check_log.txt
 
+generate_config_hex: FORCE | mkobj
+	@echo "/***************************************/"
+	@echo "/******** GENERATING CONFIG HEX ********/"
+	@echo "/***************************************/"
+	python3 $(TOOLS_DIR)/generate_config_hex.py
 
 #debug: FORCE
 #	openocd -f $(OPENOCD_INTERFACE) -f $(OPENOCD_TARGET) &

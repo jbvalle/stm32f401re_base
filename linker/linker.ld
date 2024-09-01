@@ -4,7 +4,8 @@ _end_stack_memory = ORIGIN(SRAM) + LENGTH(SRAM);
 
 MEMORY
 {
-    SRAM (rwx) : ORIGIN = 0x20000000, LENGTH = 96K
+    SRAM (rwx) : ORIGIN = 0x20001000, LENGTH = 92K
+    CONFIG_DATA (rw) : ORIGIN = 0x20000000, LENGTH = 4K
     FLASH (rw) : ORIGIN = 0x08000000, LENGTH = 512K
 }
 
@@ -24,6 +25,18 @@ SECTIONS
         *(.rodata)
         *(.rodata.*)
     }> FLASH
+
+    _start_config_data_section_init = LOADADDR(.config_data);
+
+    .config_data :
+    {
+        . = ALIGN(4);
+        _start_config_data_section_rt = .;
+        KEEP(*(.config_data))
+        KEEP(*(.config_data.*))
+        . = ALIGN(4);
+        _end_config_data_section_rt = .;
+    }> CONFIG_DATA AT> FLASH
 
     _start_data_section_init = LOADADDR(.data);
 
